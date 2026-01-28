@@ -351,6 +351,81 @@
       transform: translateY(-1px);
     }
 
+    .waitlist-popup-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 40;
+    }
+
+    .waitlist-popup-backdrop.is-visible {
+      display: flex;
+    }
+
+    .waitlist-popup {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 1.5rem 1.4rem 1.25rem;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+      text-align: center;
+    }
+
+    .waitlist-popup-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 999px;
+      background: #ecf3ff;
+      color: #1e6fdb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .waitlist-popup-icon svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      display: block;
+    }
+
+    .waitlist-popup-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 0.35rem;
+    }
+
+    .waitlist-popup-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #4b5563;
+      margin-bottom: 1rem;
+    }
+
+    .waitlist-popup-button {
+      margin-top: 0.25rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      background: #1e6fdb;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .waitlist-popup-button:hover {
+      background: #1554a6;
+      transform: translateY(-1px);
+    }
+
     .trainer-section {
       margin: 2.5rem auto 0;
       padding: 0 0.5rem;
@@ -546,11 +621,11 @@
       </p>
     </main>
 
-    <section class="info-section" id="como-funciona" aria-label="Como a Treinoway conecta alunos e treinadores">
+    <section class="info-section" id="como-funciona" aria-label="Como o Treinoway conecta alunos e treinadores">
       <h2 class="section-title">Conectando alunos e treinadores</h2>
       <p class="section-text">
-          Na Treinoway você encontra treinadores de confiança, avaliações claras e treinos pensados para o seu momento, em um
-          só lugar.
+    	  No Treinoway você encontra treinadores de confiança, avaliações claras e treinos pensados para o seu momento, em um
+    	  só lugar.
       </p>
 
       <div class="features">
@@ -591,7 +666,7 @@
     <section class="student-section" id="alunos" aria-label="Funcionalidades para alunos">
       <h2 class="section-title">Feito para quem treina</h2>
       <p class="section-text">
-          A Treinoway ajuda você a manter o treino organizado, com apoio do treinador e informações importantes sempre à mão.
+    	  O Treinoway ajuda você a manter o treino organizado, com apoio do treinador e informações importantes sempre à mão.
       </p>
 
       <div class="student-grid">
@@ -668,8 +743,8 @@
     <section class="trainer-section" id="treinadores" aria-label="Funcionalidades para treinadores">
       <h2 class="section-title">Ferramentas para treinadores</h2>
       <p class="section-text">
-          A Treinoway ajuda você a fortalecer sua marca, cuidar da carteira de alunos e ter mais tempo para o que importa:
-          treinar pessoas.
+    	  O Treinoway ajuda você a fortalecer sua marca, cuidar da carteira de alunos e ter mais tempo para o que importa:
+    	  treinar pessoas.
       </p>
 
       <div class="trainer-grid">
@@ -786,10 +861,10 @@
       <p class="coming-badge">Lançamento em breve</p>
       <p class="coming-title">Quero ser um dos primeiros!</p>
       <p class="coming-text">
-        Deixe seu e-mail e receba o convite quando a Treinoway for lançada, com acesso antecipado às principais funções para
-        alunos e treinadores.
+  Deixe seu e-mail e receba o convite quando o Treinoway for lançado, com acesso antecipado às principais funções para
+   alunos e treinadores.
       </p>
-      <form class="coming-form" action="#" method="post" onsubmit="return false;">
+      <form class="coming-form" action="#" method="post">
         <input
           class="coming-input"
           type="email"
@@ -808,6 +883,23 @@
       <p class="footer-note">&copy; 2026 Treinoway. Todos os direitos reservados.</p>
     </footer>
   </div>
+  <div class="waitlist-popup-backdrop" aria-hidden="true">
+    <div class="waitlist-popup" role="dialog" aria-modal="true" aria-label="Cadastro na lista de espera enviado">
+      <div class="waitlist-popup-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
+          <path d="M8 12.5L10.5 15L16 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <p class="waitlist-popup-title">Tudo certo!</p>
+      <p class="waitlist-popup-text">
+  Você entrou para a lista de espera do Treinoway! Em breve te enviaremos um convite para você
+   experimentar a plataforma.
+      </p>
+      <button type="button" class="waitlist-popup-button">Entendi!</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     (function () {
       const toggle = document.querySelector('.menu-toggle');
@@ -828,6 +920,65 @@
           }
         });
       });
+
+      const form = document.querySelector('.coming-form');
+      const emailInput = form ? form.querySelector('.coming-input') : null;
+      const submitButton = form ? form.querySelector('.coming-button') : null;
+      const popupBackdrop = document.querySelector('.waitlist-popup-backdrop');
+      const popupButton = popupBackdrop ? popupBackdrop.querySelector('.waitlist-popup-button') : null;
+
+      function showWaitlistPopup() {
+        if (!popupBackdrop) return;
+        popupBackdrop.classList.add('is-visible');
+      }
+
+      function hideWaitlistPopup() {
+        if (!popupBackdrop) return;
+        popupBackdrop.classList.remove('is-visible');
+      }
+
+      if (popupBackdrop) {
+        popupBackdrop.addEventListener('click', function (event) {
+          if (event.target === popupBackdrop) {
+            hideWaitlistPopup();
+          }
+        });
+      }
+
+      if (popupButton) {
+        popupButton.addEventListener('click', function () {
+          hideWaitlistPopup();
+        });
+      }
+
+      if (form && emailInput && submitButton && window.axios) {
+        form.addEventListener('submit', async function (event) {
+          event.preventDefault();
+
+          if (!emailInput.checkValidity()) {
+            emailInput.reportValidity();
+            return;
+          }
+
+          const email = emailInput.value.trim();
+          if (!email) return;
+
+          submitButton.disabled = true;
+
+          try {
+            await axios.post('https://treinoway-service-staging.up.railway.app/auth/signup/waitlist', {
+              email: email,
+            });
+
+            form.reset();
+            showWaitlistPopup();
+          } catch (error) {
+            alert('Não foi possível enviar seu e-mail agora. Tente novamente em alguns instantes.');
+          } finally {
+            submitButton.disabled = false;
+          }
+        });
+      }
     })();
   </script>
 </body>
