@@ -966,7 +966,7 @@
           submitButton.disabled = true;
 
           try {
-            await axios.post('https://treinoway-service-staging.up.railway.app/auth/signup/waitlist', {
+            await axios.post('https://treinoway-service-production.up.railway.app/auth/signup/waitlist', {
               email: email,
             });
 
