@@ -1,0 +1,93 @@
+---
+description: Contexto geral do projeto Treinoway Landing Page para agentes de IA
+alwaysApply: true
+---
+
+# Treinoway Landing Page — Contexto do Projeto
+
+## Visão Geral
+
+Landing page estática da **TreinoWay**, plataforma de suporte operacional para personal trainers que atuam com consultoria online. O objetivo da página é apresentar o produto **exclusivamente para personal trainers (B2B)** e capturar e-mails de interessados em uma lista de espera (waitlist) antes do lançamento.
+
+- Domínio em produção: `https://www.treinoway.com.br`
+- Hospedagem: GitHub Pages (arquivo `CNAME` na raiz)
+- Idioma: Português (pt-BR)
+- Público-alvo: Personal trainers que atuam com consultoria online
+
+## Arquitetura
+
+- **Arquivo único**: toda a aplicação está em `index.html` (~1100 linhas)
+- Sem framework, sem bundler, sem package manager (não há `package.json`)
+- CSS embutido na tag `<style>` dentro de `index.html`
+- JavaScript embutido na tag `<script>` no final do `<body>`
+- Sem etapa de build — o arquivo é servido diretamente como HTML estático
+
+## Tech Stack
+
+| Camada | Tecnologia |
+|--------|-----------|
+| Markup | HTML5 semântico |
+| Estilos | CSS3 (inline, no mesmo arquivo) |
+| Scripts | JavaScript ES6+ (inline, no mesmo arquivo) |
+| Fonte | Google Fonts — "Exo 2" (pesos 400 e 700) |
+| Backend | API externa no Railway |
+
+## Seções da Página
+
+1. **Header** — logo, nome da marca, menu de navegação mobile (hamburguer)
+2. **Hero** (`#inicio`) — headline B2B, subheadline e botão CTA com scroll suave para `#waitlist`
+3. **O Problema** (`#o-problema`) — copy sobre a dor do personal trainer no digital
+4. **Diferenciais** (`#diferenciais`) — três cards: Clareza Operacional, Organização Centralizada, Performance de Negócio
+5. **Funcionalidades** (`#funcionalidades`) — quatro cards: Autoridade e Imagem Profissional, Gestão de Carteira e Escala, Comunicação Blindada, Previsibilidade Financeira
+6. **Marketplace** (`#marketplace`) — seção textual sobre posicionamento e autoridade digital
+7. **Waitlist** (`#waitlist`) — formulário de e-mail com CTA "Garantir meu acesso antecipado"
+8. **Footer** — disponibilidade iOS/Android, Instagram, copyright
+9. **Modal de sucesso** — popup exibido após cadastro na waitlist
+
+## Integração com Backend
+
+- Endpoint de waitlist: `POST https://treinoway-service-production.up.railway.app/auth/signup/waitlist`
+- Payload: `{ "email": "..." }`
+- Chamada feita via `fetch` com `async/await`
+
+## Convenções de Código
+
+### HTML
+- Usar tags semânticas: `<header>`, `<main>`, `<section>`, `<article>`, `<footer>`
+- Incluir atributos ARIA para acessibilidade (`aria-label`, `aria-expanded`, `aria-hidden`, `role`)
+- Ícones feitos com SVG inline (sem bibliotecas externas)
+
+### CSS
+- Nomenclatura BEM-like: `hero-title`, `hero-cta`, `pillar-card`, `feature-card`, `card-icon`, `nav-link`
+- Design responsivo mobile-first
+- Breakpoint principal: `@media (min-width: 768px)`
+- Layout com Flexbox e CSS Grid
+- Sem variáveis CSS — cores hardcoded conforme paleta abaixo
+
+### JavaScript
+- Padrão IIFE: `(function () { ... })()`
+- APIs DOM nativas (`querySelector`, `addEventListener`)
+- Sem dependências externas
+
+## Paleta de Cores
+
+| Papel | Valor |
+|-------|-------|
+| Azul primário | `#1e6fdb` |
+| Laranja destaque | `#ff8a1f` |
+| Cinza texto | `#4b4b4b` / `#4b5563` |
+| Fundo escuro | `#0f172a` |
+
+## SEO
+
+- Meta tags Open Graph e Twitter Card
+- Dados estruturados JSON-LD (Organization, SoftwareApplication, WebPage)
+- URL canônica definida
+- Arquivos `robots.txt` e `sitemap.xml` na raiz
+
+## Restrições Importantes
+
+- Nunca adicionar dependências externas (npm, CDN de scripts) sem necessidade clara
+- Manter estilos e scripts inline em `index.html` — não criar arquivos separados sem alinhamento
+- Todo conteúdo textual deve ser em português (pt-BR)
+- Preservar atributos de acessibilidade ao editar HTML
