@@ -1026,7 +1026,7 @@
           Siga no Instagram: @treinoway
         </a>
       </p>
-      <p class="footer-note">&copy; 2026 The Treinoway Company. Todos os direitos reservados.</p>
+      <p class="footer-note">&copy; 2026 The TreinoWay Company. Todos os direitos reservados.</p>
     </footer>
   </div>
   <div class="waitlist-popup-backdrop" aria-hidden="true">
@@ -1163,7 +1163,7 @@
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ email: email })
             });
-            if (!response.ok) throw new Error('Request failed');
+            if (response.status >= 500) throw new Error('Request failed');
 
             form.reset();
             showWaitlistPopup();
